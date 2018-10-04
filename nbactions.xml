@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath gss.Main -hpo HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910,HP:0000252,HP:0012705,HP:0001250,HP:0040129,HP:0002650,HP:0200055,HP:0012804</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.workingdir>/home/gstupp/projects/phenomizer/boqa</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath gss.Main -hpo HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910,HP:0000252,HP:0012705,HP:0001250,HP:0040129,HP:0002650,HP:0200055,HP:0012804</exec.args>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+                <exec.workingdir>/home/gstupp/projects/phenomizer/boqa</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath gss.Main -hpo HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910,HP:0000252,HP:0012705,HP:0001250,HP:0040129,HP:0002650,HP:0200055,HP:0012804</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.workingdir>/home/gstupp/projects/phenomizer/boqa</exec.workingdir>
+            </properties>
+        </action>
+    </actions>
