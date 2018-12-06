@@ -41,11 +41,11 @@ public class Main {
         //List<String> hpoIDs = Arrays.asList("HP:0000970", "HP:0000252", "HP:0001250", "HP:0004305", "HP:0025460", "HP:0100022");
         // -hpo HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910,HP:0000252,HP:0012705,HP:0001250,HP:0040129,HP:0002650,HP:0200055,HP:0012804
 
-        BoqaService service = new BoqaService("hp.obo", "phenotype_annotation_wd.tab");
+        BoqaService service = new BoqaService("hp.obo", "phenotype_annotation.tab");
         service.scoreItemsForTestQuery();
 
         BOQACore.setAssociationFileType(Type.PAF);
-        BOQACore boqaCore = new BOQACore("hp.obo", "phenotype_annotation_wd.tab");
+        BOQACore boqaCore = new BOQACore("hp.obo", "phenotype_annotation.tab");
 
         List<Integer> queryAsBoqaIndices = new ArrayList<>();
         //System.out.println(hpoIDs);

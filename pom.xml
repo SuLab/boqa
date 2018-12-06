@@ -13,7 +13,7 @@
     </repositories>
 
     <properties>
-        <mainClass>gss.Test</mainClass>
+        <mainClass>gss.Main</mainClass>
     </properties>
     
     <distributionManagement>
