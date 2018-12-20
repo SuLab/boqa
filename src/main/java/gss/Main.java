@@ -11,17 +11,22 @@ import sonumina.boqa.server.ItemResultEntry;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.IParameterSplitter;
 import java.util.Arrays;
-import ontologizer.go.Term;
-import ontologizer.types.ByteString;
 
 /**
  * Command line interface
+ *
  * @author gstupp
  */
 public class Main {
 
     @Parameter(names = "-hpo", description = "Comma-separated list of HPO curies", splitter = CommaSplitter.class, required = true)
     private List<String> hpoIDs;
+
+    @Parameter(names = "-obo", description = "Path to ontology OBO file", required = true)
+    private String oboFile;
+
+    @Parameter(names = "-af", description = "Path to association file", required = true)
+    private String assFile;
 
     public static class CommaSplitter implements IParameterSplitter {
 
@@ -38,14 +43,12 @@ public class Main {
     }
 
     public void run() {
-        //List<String> hpoIDs = Arrays.asList("HP:0000970", "HP:0000252", "HP:0001250", "HP:0004305", "HP:0025460", "HP:0100022");
-        // -hpo HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910,HP:0000252,HP:0012705,HP:0001250,HP:0040129,HP:0002650,HP:0200055,HP:0012804
 
-        BoqaService service = new BoqaService("hp.obo", "phenotype_annotation.tab");
+        BoqaService service = new BoqaService(oboFile, assFile);
         service.scoreItemsForTestQuery();
 
         BOQACore.setAssociationFileType(Type.PAF);
-        BOQACore boqaCore = new BOQACore("hp.obo", "phenotype_annotation.tab");
+        BOQACore boqaCore = new BOQACore(oboFile, assFile);
 
         List<Integer> queryAsBoqaIndices = new ArrayList<>();
         //System.out.println(hpoIDs);
@@ -57,7 +60,6 @@ public class Main {
         System.out.println("itemName|score");
         for (int i = 0; i < 10; i++) {
             int boqaId = resultList.get(i).getItemId();
-            System.out.println(boqaCore.getTerm(boqaId).getIDAsString());
             String itemName = boqaCore.getItemName(boqaId);
             double score = resultList.get(i).getScore();
             System.out.println(itemName + "|" + score);
