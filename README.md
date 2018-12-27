@@ -25,3 +25,6 @@ java -jar boqa-0.0.3-SNAPSHOT.jar -hpo {comma-separated HPO IDs} -obo path_to_ob
 **Example usage:**
 
 `java -jar boqa-0.0.3-SNAPSHOT.jar -hpo "HP:0001263,HP:0100022,HP:0001290,HP:0000522,HP:0002353,HP:0002910" -obo hp.obo -af phenotype_annotation.tab`
+
+**Help**
+Run `java -jar boqa-0.0.3-SNAPSHOT.jar --help` to display all arguments.
