@@ -27,6 +27,9 @@ public class Main {
 
     @Parameter(names = "-af", description = "Path to association file", required = true)
     private String assFile;
+    
+    @Parameter(names = "-n", description = "Number of results to display")
+    private int numResults = 10;
 
     public static class CommaSplitter implements IParameterSplitter {
 
@@ -58,7 +61,7 @@ public class Main {
 
         List<ItemResultEntry> resultList = boqaCore.score(queryAsBoqaIndices);
         System.out.println("itemName|score");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numResults; i++) {
             int boqaId = resultList.get(i).getItemId();
             String itemName = boqaCore.getItemName(boqaId);
             double score = resultList.get(i).getScore();
