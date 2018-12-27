@@ -30,6 +30,9 @@ public class Main {
     
     @Parameter(names = "-n", description = "Number of results to display")
     private int numResults = 10;
+    
+    @Parameter(names = "--help", help = true, description = "Show usage instructions")
+    private boolean help = false;
 
     public static class CommaSplitter implements IParameterSplitter {
 
@@ -41,7 +44,12 @@ public class Main {
     public static void main(String argv[]) {
 
         Main main = new Main();
-        JCommander.newBuilder().addObject(main).build().parse(argv);
+        JCommander jct = JCommander.newBuilder().addObject(main).build();
+        jct.parse(argv);
+        if (main.help) {
+             jct.usage();
+             return;
+        }
         main.run();
     }
 
